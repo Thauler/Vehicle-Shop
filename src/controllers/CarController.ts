@@ -8,7 +8,7 @@ import CarService from '../services/CarService';
 export default class CarController extends Controller<Car> {
   #route: string;
 
-  constructor(service = new CarService(), route = '/cars') {
+  constructor(public service = new CarService(), route = '/cars') {
     super(service);
     this.#route = route;
   }
@@ -26,9 +26,9 @@ export default class CarController extends Controller<Car> {
       if (!result) {
         return res.status(400).json({ error: this.errors.badRequest });
       }
-      if ('error' in result) {
-        return res.status(400).json(result);
-      }
+
+      if ('error' in result) return res.status(400).json(result);
+
       return res.status(201).json(result);
     } catch (e) {
       return res.status(500).json({ error: this.errors.internal });
