@@ -1,17 +1,19 @@
-import { Car, CarSchema } from '../interfaces/CarInterface';
+import { CarDocument, CarSchema } from '../interfaces/CarInterface';
 import Service, { ServiceError } from '.';
-import CarModel from '../models/CarModel';
+import GenericModel from '../models/MongoModel';
 
-export default class CarService extends Service<Car> {
-  constructor(public model = new CarModel()) {
-    super(model);
+export default class CarService extends Service<CarDocument> {
+  constructor($model: GenericModel<CarDocument>) {
+    super($model);
+    this.$model = $model;
   }
 
-  create = async (object: Car): Promise<Car | ServiceError | null> => {
+  create = async (object: CarDocument):
+  Promise<CarDocument | ServiceError | null> => {
     const parsed = CarSchema.safeParse(object);
     if (!parsed.success) {
       return { error: parsed.error };
     }
-    return this.model.create(object);
+    return this.$model.create(object);
   };
 }

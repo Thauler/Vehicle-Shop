@@ -21,7 +21,11 @@ export default abstract class Controller<T> {
 
   protected errors = ControllerErrors;
 
-  constructor(protected service: Services<T>) { }
+  protected $service: Services<T>;
+  
+  constructor(service: Services<T>) {
+    this.$service = service;
+  }
 
   abstract create(
     req: RequestWithBody<T>,

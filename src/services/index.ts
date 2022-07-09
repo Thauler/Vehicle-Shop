@@ -1,25 +1,25 @@
 import { ZodError } from 'zod';
-import Model from '../models/MongoModel';
+
+import { Model } from '../interfaces/ModelInterface';
 
 export interface ServiceError {
   error: ZodError;
 }
 
-export default class Service<T> {
-  constructor(protected model: Model<T>) { }
+export default abstract class Service<T> {
+  protected $model: Model<T>;
 
-  create = async (object: T): Promise<T | null | ServiceError> =>
-    this.model.create(object);
+  constructor(model: Model<T>) {
+    this.$model = model;
+  }
 
-  read = async (): Promise<T[]> =>
-    this.model.read();
+  abstract create(object: T): Promise<T | null | ServiceError>;
 
-  readOne = async (id: string): Promise<T | null> =>
-    this.model.readOne(id);
+  // abstract read(): Promise<T[]>;
 
-  update = async (id: string, object: T): Promise<T | null | ServiceError> =>
-    this.model.update(id, object);
+  // abstract readOne(id: string): Promise<T | null>;
 
-  delete = async (id: string): Promise<T | null> =>
-    this.model.delete(id);
+  // abstract update(id: string, object: T): Promise<T | null | ServiceError>;
+
+  // abstract delete(id: string): Promise<T | null>;
 }

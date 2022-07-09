@@ -1,25 +1,25 @@
-import { Model, Document, isValidObjectId } from 'mongoose';
-import { Model as IModel } from '../interfaces/ModelInterface';
+import { Document, Model as IModelMongoose } from 'mongoose';
+import { Model as IModelGeneric } from '../interfaces/ModelInterface';
 
-export default abstract class MongoModel<T> implements IModel<T> {
-  constructor(protected model: Model<T & Document>) { }
+export default abstract class GenericModel<T> implements IModelGeneric<T> {
+  constructor(protected $modelMongoose: IModelMongoose<T & Document>) { }
 
-  create = async (object: T): Promise<T> => this.model.create({ ...object });
+  abstract create(object: T): Promise<T>;
 
-  read = async (): Promise<T[]> => this.model.find();
+  // read = async (): Promise<T[]> => this.$modelMongoose.find();
 
-  readOne = async (id: string): Promise<T | null> => {
-    if (!isValidObjectId(id)) return null;
-    return this.model.findById(id);
-  };
+  // readOne = async (id: string): Promise<T | null> => {
+  //   if (!isValidObjectId(id)) return null;
+  //   return this.$modelMongoose.findById(id);
+  // };
 
-  update = async (id: string, object: T): Promise<T | null> => {
-    if (!isValidObjectId(id)) return null;
-    return this.model.findByIdAndUpdate({ _id: id, ...object });
-  };
+  // update = async (id: string, object: T): Promise<T | null> => {
+  //   if (!isValidObjectId(id)) return null;
+  //   return this.$modelMongoose.findByIdAndUpdate({ _id: id, ...object });
+  // };
 
-  delete = async (id: string): Promise<T | null> => {
-    if (!isValidObjectId(id)) return null;
-    return this.model.findByIdAndDelete(id);
-  };
+  // delete = async (id: string): Promise<T | null> => {
+  //   if (!isValidObjectId(id)) return null;
+  //   return this.$modelMongoose.findByIdAndDelete(id);
+  // };
 }

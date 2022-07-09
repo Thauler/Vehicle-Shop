@@ -8,9 +8,10 @@ import CarService from '../services/CarService';
 export default class CarController extends Controller<Car> {
   #route: string;
 
-  constructor(public service = new CarService(), route = '/cars') {
+  constructor(service: CarService, route = '/cars') {
     super(service);
     this.#route = route;
+    this.$service = service;
   }
 
   get route() { return this.#route; }
@@ -22,7 +23,7 @@ export default class CarController extends Controller<Car> {
     try {
       const { body } = req;
 
-      const result = await this.service.create(body);
+      const result = await this.$service.create(body);
       if (!result) {
         return res.status(400).json({ error: this.errors.badRequest });
       }
@@ -41,7 +42,7 @@ export default class CarController extends Controller<Car> {
   // ): Promise<typeof res> => {
   //   try {
   //     const { id } = req.params;
-  //     const result = await this.service.readOne(id);
+  //     const result = await this.#service.readOne(id);
   //     if (!result) {
   //       return res.status(400).json({ error: this.errors.badRequest });
   //     }
