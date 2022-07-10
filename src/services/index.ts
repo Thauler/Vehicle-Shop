@@ -15,7 +15,7 @@ export default abstract class Service<T> {
 
   abstract create(object: T): Promise<T | null | ServiceError>;
 
-  // abstract read(): Promise<T[]>;
+  abstract read(): Promise<T[]>;
 
   // abstract readOne(id: string): Promise<T | null>;
 

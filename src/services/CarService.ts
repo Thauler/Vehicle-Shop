@@ -7,7 +7,7 @@ export default class CarService extends Service<CarDocument> {
     super($model);
     this.$model = $model;
   }
-
+  
   create = async (object: CarDocument):
   Promise<CarDocument | ServiceError | null> => {
     const parsed = CarSchema.safeParse(object);
@@ -16,4 +16,6 @@ export default class CarService extends Service<CarDocument> {
     }
     return this.$model.create(object);
   };
+
+  read = async (): Promise<CarDocument[]> => this.$model.read();
 }
