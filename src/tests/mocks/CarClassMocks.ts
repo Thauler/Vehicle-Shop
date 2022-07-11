@@ -1,16 +1,18 @@
 import { CarDocument } from "../../interfaces/CarInterface";
 import GenericModel from "../../models/MongoModel";
 import Service from "../../services";
-import { carMockRequest } from "./CarMock";
+import { allCarMockRequest, carMockRequest } from "./CarMock";
 
 
 export class CarModelMock extends GenericModel<CarDocument> {
-  create = async (_object: CarDocument): Promise<CarDocument> => {
-    return carMockRequest;
-  }
+  read = async (): Promise<CarDocument[]> => allCarMockRequest;
+
+  create = async (_object: CarDocument): Promise<CarDocument> => carMockRequest;
 }
 
 export class CarServiceMock extends Service<CarDocument> {
+  read = async (): Promise<CarDocument[]> => allCarMockRequest;
+
   create = async (_object: CarDocument): Promise<CarDocument> => {
     return carMockRequest;
   }
