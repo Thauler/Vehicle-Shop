@@ -2,13 +2,13 @@ import { expect } from 'chai';
 import sinon, { SinonStub } from 'sinon';
 import * as carSchema from '../../../models/Schemas/CarSchema';
 import CarModel from '../../../models/CarModel';
-import { carMockRequest, carMockResponse } from '../../mocks/CarMock';
+import { allCarMockResponse, carMockRequest, carMockResponse } from '../../mocks/CarMock';
 
 const carModel = new CarModel(carSchema.carMongooseModel);
 
-describe('1 - Testing car model', () => {
+describe('Model: - Testing car model', () => {
 
-  describe('A - Testing mehtod creates', () => {
+  describe('A) - Testing mehtod creates', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'create').resolves(carMockResponse);
@@ -21,6 +21,22 @@ describe('1 - Testing car model', () => {
 
       expect(createdCar).to.be.an('object');
       expect(createdCar).deep.equal(carMockResponse);
+    });
+  });
+
+    describe('B) - Testing mehtod read', () => {
+
+    before(async () => {
+      sinon.stub(carSchema.carMongooseModel, 'find').resolves(allCarMockResponse);
+    });
+
+    after(() => (carSchema.carMongooseModel.find as SinonStub).restore());
+
+    it('In case of success', async () => {
+      const createdCar = await carModel.read();
+
+      expect(createdCar).to.be.an('array');
+      expect(createdCar).deep.equal(allCarMockResponse);
     });
   });
 })
