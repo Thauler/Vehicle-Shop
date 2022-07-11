@@ -28,6 +28,15 @@ export const carMockRequestError = {
   doorsQty: 0
 } as CarDocument;
 
+export const allCarMockRequest = [{
+  model: 'Ferrari Maranello',
+  year: 1963,
+  color: 'red',
+  buyValue: 3500000,
+  seatsQty: 2,
+  doorsQty: 2
+}] as CarDocument[];
+
 export const allCarMockResponse = [{
   model: 'Ferrari Maranello',
   year: 1963,
