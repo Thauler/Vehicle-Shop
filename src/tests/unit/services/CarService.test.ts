@@ -36,8 +36,8 @@ describe('Service: - Testing car service', () => {
       });
     });
   });
-    
-    describe('B) - Testing mehtod read', () => {
+
+  describe('B) - Testing mehtod read', () => {
     
     before(async () => {
       sinon.stub(carModelMock, 'read').resolves(allCarMockResponse);
@@ -50,6 +50,21 @@ describe('Service: - Testing car service', () => {
       
       expect(allCars).to.be.an('array');
       expect(allCars).deep.equal(allCarMockResponse);
+    });
+  });
+
+  describe('C) - Testing mehtod delete', () => {
+    
+    before(async () => {
+      sinon.stub(carModelMock, 'delete').resolves(null);
+    });
+    
+    after(() => (carModelMock.delete as SinonStub).restore());
+    
+    it('In case of success', async () => {
+      const deletedCar = await carService.delete(carMockRequest.id);
+
+      expect(deletedCar).deep.equal(null);
     });
   });
 })
