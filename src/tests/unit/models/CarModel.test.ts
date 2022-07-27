@@ -24,7 +24,7 @@ describe('Model: - Testing car model', () => {
     });
   });
 
-    describe('B) - Testing mehtod read', () => {
+  describe('B) - Testing mehtod read', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'find').resolves(allCarMockResponse);
@@ -37,6 +37,21 @@ describe('Model: - Testing car model', () => {
 
       expect(createdCar).to.be.an('array');
       expect(createdCar).deep.equal(allCarMockResponse);
+    });
+  });
+
+  describe('C) - Testing mehtod delete', () => {
+
+    before(async () => {
+      sinon.stub(carSchema.carMongooseModel, 'findByIdAndDelete').resolves(null);
+    });
+
+    after(() => (carSchema.carMongooseModel.findByIdAndDelete as SinonStub).restore());
+
+    it('In case of success', async () => {
+      const deletedCar = await carModel.delete(carMockRequest.id);
+
+      expect(deletedCar).deep.equal(null);
     });
   });
 })
