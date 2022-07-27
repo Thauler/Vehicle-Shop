@@ -10,7 +10,11 @@ export default class CarModel extends GenericModel<CarDocument> {
   
   create = async (object: CarDocument): Promise<CarDocument> =>
     this.$modelMongoose.create({ ...object });
-
+  
   read = async (): Promise<CarDocument[]> =>
     this.$modelMongoose.find();
+  
+  delete = async (id: string): Promise<CarDocument | null> => 
+    this.$modelMongoose.findByIdAndDelete({ _id: id })
+  ;
 }
