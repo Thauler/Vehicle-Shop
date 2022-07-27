@@ -16,6 +16,9 @@ export default class CarService extends Service<CarDocument> {
     }
     return this.$model.create(object);
   };
-
+  
   read = async (): Promise<CarDocument[]> => this.$model.read();
+
+  delete = async (id: string): Promise<CarDocument | null> =>
+    this.$model.delete(id);
 }
