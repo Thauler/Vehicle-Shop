@@ -18,8 +18,5 @@ export default abstract class GenericModel<T> implements IModelGeneric<T> {
   //   return this.$modelMongoose.findByIdAndUpdate({ _id: id, ...object });
   // };
 
-  // delete = async (id: string): Promise<T | null> => {
-  //   if (!isValidObjectId(id)) return null;
-  //   return this.$modelMongoose.findByIdAndDelete(id);
-  // };
+  abstract delete(id: string): Promise<T | null>;
 }

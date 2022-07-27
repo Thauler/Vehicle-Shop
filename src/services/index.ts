@@ -21,5 +21,5 @@ export default abstract class Service<T> {
 
   // abstract update(id: string, object: T): Promise<T | null | ServiceError>;
 
-  // abstract delete(id: string): Promise<T | null>;
+  abstract delete(id: string): Promise<T | null>;
 }
