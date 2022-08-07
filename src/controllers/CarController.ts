@@ -57,15 +57,27 @@ export default class CarController extends Controller<Car> {
   ): Promise<typeof res> => {
     try {
       const { id } = req.params;
-      if (id.length !== 24) {
-        return res.status(400)
-          .json({ error: this.errors.incorrectId });
-      }
+
       const result = await this.$service.readOne(id);
       if (!result) {
         return res.status(404).json({ error: this.errors.notFound });
       }
       return res.status(200).json(result);
+    } catch (e) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
+
+  update = async (req: RequestWithBody<Car & { _id: string }>, res: Response):
+  Promise<typeof res> => {
+    const { id } = req.params;
+    const carToBeUpdated = req.body;
+    try {
+      const result = await this.$service.update(id, carToBeUpdated);
+      if (!result) {
+        return res.status(404).json({ error: this.errors.notFound });
+      }
+      return res.status(200).json();
     } catch (e) {
       return res.status(500).json({ error: this.errors.internal });
     }
@@ -77,10 +89,7 @@ export default class CarController extends Controller<Car> {
   ): Promise<typeof res> => {
     try {
       const { id } = req.params;
-      if (id.length !== 24) {
-        return res.status(400)
-          .json({ error: this.errors.incorrectId });
-      }
+
       const result = await this.$service.delete(id);
       if (!result) {
         return res.status(404).json({ error: this.errors.notFound });
