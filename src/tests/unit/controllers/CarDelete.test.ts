@@ -56,30 +56,14 @@ describe('Controller: - Testing method delete', () => {
       it('- Controller method delete return status 404 and an error message when is requested without an ID', async() => {
       request.params = { id }
 
-        await carController.create(request, response);
-
-      expect((response.status as SinonStub).calledWith(400));
-      });
-  });
-
-  describe('C) - In case of an error with zod verification', () => {
-
-    before(async () => {
-      response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns({ error: 'error' } as any);
-      sinon.stub(carService, 'delete').resolves({ error: 'error' } as any);
-    });
-
-    after(() => (carService.delete as SinonStub).restore());
-
-      it('- Controller method delete return status 400 and an error message when is requested without an ID', async() => {
         await carController.delete(request, response);
 
-      expect((response.status as SinonStub).calledWith(400));
+      expect((response.status as SinonStub).calledWith(404));
       });
   });
 
-  describe('D) - In case of an error with an ID length different of 24 characters', () => {
+
+  describe('C) - In case of an error with an ID length different of 24 characters', () => {
 
     before(async () => {
       response.status = sinon.stub().returns(response);
@@ -98,7 +82,7 @@ describe('Controller: - Testing method delete', () => {
       });
   });
 
-  describe('E) - Internal server Error', () => {
+  describe('D) - Internal server Error', () => {
 
           before(async () => {
             response.status = sinon.stub().returns(response);
