@@ -19,7 +19,7 @@ export default abstract class Service<T> {
 
   abstract readOne(id: string): Promise<T | null>;
 
-  // abstract update(id: string, object: T): Promise<T | null | ServiceError>;
+  abstract update(id: string, object: T): Promise<T | null | ServiceError>;
 
   abstract delete(id: string): Promise<T | null>;
 }
