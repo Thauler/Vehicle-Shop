@@ -3,7 +3,7 @@ import { SinonStub } from 'sinon';
 import sinon from 'sinon';
 import { carMongooseModel } from '../../../models/Schemas/CarSchema';
 import CarService from '../../../services/CarService';
-import { CarModelMock } from '../../mocks/CarClassMocks';
+import { CarModelMock, CarServiceMock } from '../../mocks/CarClassMocks';
 import { allCarMockResponse, carMockRequest, carMockRequestError, carMockResponse } from '../../mocks/CarMock';
 import { ServiceError } from '../../../services';
 
@@ -68,7 +68,22 @@ describe('Service: - Testing car service', () => {
     });
   });
 
-  describe('D) - Testing method delete', () => {
+  describe('D) - Testing method update', () => {
+    
+    before(async () => {
+      sinon.stub(carModelMock, 'update').resolves(carMockResponse);
+    });
+    
+    after(() => (carModelMock.update as SinonStub).restore());
+    
+    it('In case of success', async () => {
+      const updateCar = await carService.update(carMockRequest.id, carMockRequest);
+
+      expect(updateCar).deep.equal(carMockResponse);
+    });
+  });
+
+  describe('E) - Testing method delete', () => {
     
     before(async () => {
       sinon.stub(carModelMock, 'delete').resolves(null);

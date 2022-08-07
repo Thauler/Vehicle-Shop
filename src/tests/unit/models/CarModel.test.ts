@@ -55,7 +55,22 @@ describe('Model: - Testing car model', () => {
     });
   });
 
-  describe('D) - Testing method delete', () => {
+  describe('D) - Testing method update', () => {
+
+    before(async () => {
+      sinon.stub(carSchema.carMongooseModel, 'findByIdAndUpdate').resolves(carMockResponse);
+    });
+
+    after(() => (carSchema.carMongooseModel.findByIdAndUpdate as SinonStub).restore());
+
+    it('In case of success', async () => {
+      const updateCar = await carModel.update(carMockRequest.id, carMockRequest);
+
+      expect(updateCar).deep.equal(carMockResponse);
+    });
+  });
+
+  describe('E) - Testing method delete', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'findByIdAndDelete').resolves(null);
