@@ -12,7 +12,7 @@ import { ServiceError } from '../../../services';
 
 describe('Service: - Testing car service', () => {
 
-  describe('A) - Testing mehtod creates', () => {
+  describe('A) - Testing method creates', () => {
     describe('- In case of success', () => {
 
       before(async () => {
@@ -37,7 +37,7 @@ describe('Service: - Testing car service', () => {
     });
   });
 
-  describe('B) - Testing mehtod read', () => {
+  describe('B) - Testing method read', () => {
     
     before(async () => {
       sinon.stub(carModelMock, 'read').resolves(allCarMockResponse);
@@ -53,7 +53,22 @@ describe('Service: - Testing car service', () => {
     });
   });
 
-  describe('C) - Testing mehtod delete', () => {
+  describe('C) - Testing method readOne', () => {
+    
+    before(async () => {
+      sinon.stub(carModelMock, 'readOne').resolves(carMockResponse);
+    });
+    
+    after(() => (carModelMock.readOne as SinonStub).restore());
+    
+    it('In case of success', async () => {
+      const carById = await carService.readOne(carMockRequest.id);
+
+      expect(carById).deep.equal(carMockResponse);
+    });
+  });
+
+  describe('D) - Testing method delete', () => {
     
     before(async () => {
       sinon.stub(carModelMock, 'delete').resolves(null);
