@@ -10,10 +10,7 @@ export default abstract class GenericModel<T> implements IModelGeneric<T> {
 
   abstract readOne(id: string): Promise<T | null>;
 
-  // update = async (id: string, object: T): Promise<T | null> => {
-  //   if (!isValidObjectId(id)) return null;
-  //   return this.$modelMongoose.findByIdAndUpdate({ _id: id, ...object });
-  // };
+  abstract update(id: string, object: T): Promise<T | null>;
 
   abstract delete(id: string): Promise<T | null>;
 }
