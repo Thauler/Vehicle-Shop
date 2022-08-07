@@ -51,21 +51,25 @@ export default class CarController extends Controller<Car> {
     }
   };
 
-  // readOne = async (
-  //   req: Request<{ id: string }>,
-  //   res: Response<Car | ResponseError>,
-  // ): Promise<typeof res> => {
-  //   try {
-  //     const { id } = req.params;
-  //     const result = await this.#service.readOne(id);
-  //     if (!result) {
-  //       return res.status(400).json({ error: this.errors.badRequest });
-  //     }
-  //     return res.status(200).json(result);
-  //   } catch (e) {
-  //     return res.status(500).json({ error: this.errors.internal });
-  //   }
-  // };
+  readOne = async (
+    req: Request<{ id: string }>,
+    res: Response<Car | ResponseError>,
+  ): Promise<typeof res> => {
+    try {
+      const { id } = req.params;
+      if (id.length !== 24) {
+        return res.status(400)
+          .json({ error: this.errors.incorrectId });
+      }
+      const result = await this.$service.readOne(id);
+      if (!result) {
+        return res.status(404).json({ error: this.errors.notFound });
+      }
+      return res.status(200).json(result);
+    } catch (e) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
 
   delete = async (
     req: Request<{ id: string }>,
