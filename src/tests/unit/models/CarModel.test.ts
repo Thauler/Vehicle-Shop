@@ -8,7 +8,7 @@ const carModel = new CarModel(carSchema.carMongooseModel);
 
 describe('Model: - Testing car model', () => {
 
-  describe('A) - Testing mehtod creates', () => {
+  describe('A) - Testing method creates', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'create').resolves(carMockResponse);
@@ -24,7 +24,7 @@ describe('Model: - Testing car model', () => {
     });
   });
 
-  describe('B) - Testing mehtod read', () => {
+  describe('B) - Testing method read', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'find').resolves(allCarMockResponse);
@@ -33,14 +33,29 @@ describe('Model: - Testing car model', () => {
     after(() => (carSchema.carMongooseModel.find as SinonStub).restore());
 
     it('In case of success', async () => {
-      const createdCar = await carModel.read();
+      const allCars = await carModel.read();
 
-      expect(createdCar).to.be.an('array');
-      expect(createdCar).deep.equal(allCarMockResponse);
+      expect(allCars).to.be.an('array');
+      expect(allCars).deep.equal(allCarMockResponse);
     });
   });
 
-  describe('C) - Testing mehtod delete', () => {
+  describe('C) - Testing method readOne', () => {
+
+    before(async () => {
+      sinon.stub(carSchema.carMongooseModel, 'findById').resolves(carMockResponse);
+    });
+
+    after(() => (carSchema.carMongooseModel.findById as SinonStub).restore());
+
+    it('In case of success', async () => {
+      const carById = await carModel.readOne(carMockRequest.id);
+
+      expect(carById).deep.equal(carMockResponse);
+    });
+  });
+
+  describe('D) - Testing method delete', () => {
 
     before(async () => {
       sinon.stub(carSchema.carMongooseModel, 'findByIdAndDelete').resolves(null);
