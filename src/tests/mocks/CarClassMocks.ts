@@ -5,12 +5,14 @@ import { allCarMockRequest, carMockRequest, carMockResponse } from "./CarMock";
 
 
 export class CarModelMock extends GenericModel<CarDocument> {
-
+  
   create = async (_object: CarDocument): Promise<CarDocument> => carMockRequest;
-
+  
   read = async (): Promise<CarDocument[]> => allCarMockRequest;
-
+  
   readOne = async (_id: string): Promise<CarDocument | null> => carMockResponse;
+  
+  update = async (_id: string, _object: CarDocument): Promise<CarDocument | null> => carMockResponse;
 
   delete = async (_id: string): Promise<CarDocument | null> => carMockRequest.id;
 }
@@ -22,6 +24,8 @@ export class CarServiceMock extends Service<CarDocument> {
   read = async (): Promise<CarDocument[]> => allCarMockRequest;
 
   readOne = async (_id: string): Promise<CarDocument | null> => carMockResponse;
+
+  update = async (_id: string, _object: CarDocument): Promise<CarDocument | null> => carMockResponse;
 
   delete = async (_id: string): Promise<CarDocument | null> => carMockRequest.id;
 }
