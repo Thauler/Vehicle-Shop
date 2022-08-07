@@ -17,7 +17,7 @@ export const carMockResponse = {
   seatsQty: 2,
   doorsQty: 2,
   _id: "62c7392922b7499c89e6832c"
-} as CarDocument;
+} as (CarDocument & { _id: string });
 
 export const carMockRequestError = {
   model: '',
