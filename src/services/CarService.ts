@@ -19,6 +19,9 @@ export default class CarService extends Service<CarDocument> {
   
   read = async (): Promise<CarDocument[]> => this.$model.read();
 
+  readOne = async (id: string): Promise<CarDocument | null> =>
+    this.$model.readOne(id);
+
   delete = async (id: string): Promise<CarDocument | null> =>
     this.$model.delete(id);
 }
