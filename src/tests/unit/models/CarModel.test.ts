@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon, { SinonStub } from 'sinon';
-import * as carSchema from '../../../models/Schemas/CarSchema';
-import CarModel from '../../../models/CarModel';
+import * as carSchema from '../../../models/Schemas/Car/CarSchema';
+import CarModel from '../../../models/Car/CarModel';
 import { allCarMockResponse, carMockRequest, carMockResponse } from '../../mocks/CarMock';
 
 const carModel = new CarModel(carSchema.carMongooseModel);

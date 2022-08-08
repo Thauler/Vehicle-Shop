@@ -4,11 +4,11 @@ const { expect } = chai;
 import chaiHttp = require('chai-http');
 import { Response } from 'express';
 
-import CarController from '../../../controllers/CarController';
+import CarController from '../../../controllers/Car/CarController';
 import { Car } from '../../../interfaces/CarInterface';
 import { carMockRequest, carMockResponse } from '../../mocks/CarMock';
 import { CarModelMock, CarServiceMock } from '../../mocks/CarClassMocks';
-import carMongooseModel from '../../../models/Schemas/CarSchema';
+import carMongooseModel from '../../../models/Schemas/Car/CarSchema';
 import { RequestWithBody } from '../../../controllers';
 
 chai.use(chaiHttp);

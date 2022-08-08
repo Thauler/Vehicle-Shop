@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { SinonStub } from 'sinon';
 import sinon from 'sinon';
-import { carMongooseModel } from '../../../models/Schemas/CarSchema';
-import CarService from '../../../services/CarService';
+import { carMongooseModel } from '../../../models/Schemas/Car/CarSchema';
+import CarService from '../../../services/Car/CarService';
 import { CarModelMock, CarServiceMock } from '../../mocks/CarClassMocks';
 import { allCarMockResponse, carMockRequest, carMockRequestError, carMockResponse } from '../../mocks/CarMock';
 import { ServiceError } from '../../../services';

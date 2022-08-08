@@ -1,9 +1,9 @@
 import chai from 'chai';
 const { expect } = chai;
 
-import CarController from '../../../controllers/CarController';
+import CarController from '../../../controllers/Car/CarController';
 import { CarModelMock, CarServiceMock } from '../../mocks/CarClassMocks';
-import carMongooseModel from '../../../models/Schemas/CarSchema';
+import carMongooseModel from '../../../models/Schemas/Car/CarSchema';
 
 
 const carModelMock = new CarModelMock(carMongooseModel);

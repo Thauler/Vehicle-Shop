@@ -1,6 +1,6 @@
-import { CarDocument, CarSchema } from '../interfaces/CarInterface';
-import Service, { ServiceError } from '.';
-import GenericModel from '../models/MongoModel';
+import { CarDocument, CarSchema } from '../../interfaces/CarInterface';
+import Service, { ServiceError } from '..';
+import GenericModel from '../../models/MongoModel';
 
 export default class CarService extends Service<CarDocument> {
   constructor($model: GenericModel<CarDocument>) {

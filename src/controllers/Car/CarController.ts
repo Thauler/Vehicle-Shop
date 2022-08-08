@@ -1,9 +1,9 @@
 import {
   Request,
   Response } from 'express';
-import Controller, { RequestWithBody, ResponseError } from '.';
-import { Car } from '../interfaces/CarInterface';
-import CarService from '../services/CarService';
+import Controller, { RequestWithBody, ResponseError } from '..';
+import { Car } from '../../interfaces/CarInterface';
+import CarService from '../../services/Car/CarService';
 
 export default class CarController extends Controller<Car> {
   #route: string;
