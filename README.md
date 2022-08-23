@@ -1,16 +1,7 @@
-# 🚧 README em construção 🚧
+# Vehicle dealership  🚗
 
-<!-- Olá, Tryber!
+For this project, the Object-oriented programming (OOP) is applied using SOLID principles to construct an API CRUD for manage a vehicle dealership. Using MongoDB as database.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+## Techs used
 
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+This an API RESTful using NodeJs and Express with TypeScript. I use Docker Compose to stand up local development environments
