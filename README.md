@@ -2,7 +2,7 @@
 
 For this project, the Object-oriented programming (OOP) is applied using SOLID principles to construct an API CRUD for manage a vehicle dealership. Using MongoDB as database.
 
-## Requisitos do projeto
+## Goals
 
 - [x] 01 - Make an abstract Model interface.
 - [x] 02 - Create an abstract Vehicle interface.
@@ -22,7 +22,7 @@ For this project, the Object-oriented programming (OOP) is applied using SOLID p
 - [x] 16 - Write tests for controller layer to cover about 60%.
 - [x] 17 - Create a route for the endpoint "/cars/id" where is possible to delete a car by his ID.
 
-## Requisitos bônus
+## Goals
 
 - [x] 18 - Create a Motorcycle interface through Vehicle interface.
 - [x] 19 - Create a route for the endpoint "/motorcycle" to register a new Motorcycle.
